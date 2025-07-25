@@ -1,0 +1,107 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "x86 Assembly",
+  "scopeName": "source.asm.x86",
+  "fileTypes": ["asm", "S", "nasm"],
+  "patterns": [
+    { "include": "#instructions" },
+    { "include": "#registers" },
+    { "include": "#numbers" },
+    { "include": "#labels" },
+    { "include": "#comments" },
+    { "include": "#directives" },
+    { "include": "#sections" },
+    { "include": "#symbols" },
+    { "include": "#symbol-uses" },
+    { "include": "#strings" }
+  ],
+  "repository": {
+    "instructions": {
+      "patterns": [
+        {
+          "name": "keyword.mnemonic.asm",
+          "match": "\\b(mov|add|sub|mul|div|inc|dec|and|or|xor|not|shl|shr|cmp|jmp|je|jne|jg|jge|jl|jle|call|ret|push|pop|lea|nop|syscall|int)\\b"
+        }
+      ]
+    },
+    "registers": {
+      "patterns": [
+        {
+          "name": "variable.register.asm",
+          "match": "\\b((e?[abcd][xhl])|(r(8|9|1[0-5])[bwd]?|r[abcd]x|rsi|rdi|rsp|rbp|rip|eax|ebx|ecx|edx|esi|edi|rax|rbx|rcx|rdx|r8|r9|r10|r11|r12|r13|r14|r15))\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.asm",
+          "match": "\\b(0x[0-9a-fA-F]+|\\d+[bhd]?)\\b"
+        }
+      ]
+    },
+    "labels": {
+      "patterns": [
+        {
+          "name": "entity.name.label.asm",
+          "match": "^[ \\t]*([._]?[A-Za-z_][\\w]*):"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.asm",
+          "match": ";.*$"
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "keyword.directive.asm",
+          "match": "\\b(section|global|extern|align|bits|org|equ|db|dw|dd|dq|resb|resw|resd|resq)\\b"
+        }
+      ]
+    },
+    "sections": {
+      "patterns": [
+        {
+          "name": "constant.language.section.asm",
+          "match": "\\.(text|data|bss|rodata)\\b"
+        }
+      ]
+    },
+    "symbols": {
+      "patterns": [
+        {
+          "name": "entity.name.variable.definition.asm",
+          "match": "^[ \\t]*([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s+(db|dw|dd|dq))"
+        }
+      ]
+    },
+    "symbol-uses": {
+      "patterns": [
+        {
+          "name": "variable.other.readwrite.asm",
+          "match": "\\b(msg|len)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.asm",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.asm",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

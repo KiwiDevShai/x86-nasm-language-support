@@ -1,0 +1,35 @@
+{
+  "name": "x86-asm",
+  "publisher": "kiwidev",
+  "displayName": "x86-nasm-language-support",
+  "description": "Language support for x86 nasm",
+  "version": "0.0.1",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KiwiDevShai/x86-nasm-language-support"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "asm",
+        "aliases": ["assembly", "asm"],
+        "extensions": [".asm", ".S", ".nasm"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "asm",
+        "scopeName": "source.asm.x86",
+        "path": "./syntaxes/asm.tmLanguage.json"
+      }
+    ]
+  }
+}
